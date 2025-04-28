@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправленные формы</title>
+    <style>
+        .list-data{
+        margin-bottom: 20px; 
+        padding: 10px; 
+        border: 1px solid #ccc;}
+    </style>    
+</head>
+
+
+<body>
+    <h1>Список отправленных форм</h1>
+
+    {% if form_data_list %}
+        {% for record in form_data_list %}
+            <div class='list-data'>
+                <strong>Дата отправки:</strong> {{ record.created_at|date:"d.m.Y H:i" }}<br>
+                <strong>Данные:</strong>
+                <ul>
+                    {% for item in record.data %}
+                        <li>{{ item }}</li>
+                    {% empty %}
+                        <li>Нет данных</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нет сохранённых данных.</p>
+    {% endif %}
+
+    <a href="/">Перейти к форме отправки</a>
+</body>
+</html>

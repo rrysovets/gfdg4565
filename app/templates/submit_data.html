@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>форма отправки</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <div id="input-container">
+            <input type="text" name="items[]" placeholder="Введите значение">
+        </div>
+        <button type="button" id="add-input">Добавить поле</button>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        $('#add-input').on('click', function() {
+            $('#input-container').append('<br><input type="text" name="items[]" placeholder="Введите значение">');
+        });
+    </script>
+</body>
+</html>
